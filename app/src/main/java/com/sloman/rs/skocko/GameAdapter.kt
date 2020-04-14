@@ -30,12 +30,12 @@ class GameAdapter(val onClickListener: OnClickListener ) :
     companion object DiffCallback : DiffUtil.ItemCallback<Guess>() {
 
         override fun areItemsTheSame(oldItem: Guess, newItem: Guess): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.guessId == newItem.guessId
         }
 
         override fun areContentsTheSame(oldItem: Guess, newItem: Guess): Boolean {
             //TODO
-            return oldItem.id == newItem.id
+            return oldItem.guesses == newItem.guesses
         }
     }
 

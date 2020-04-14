@@ -22,7 +22,6 @@ abstract class GameDatabase : RoomDatabase() {
         val PREPOPULATE_GAME =
             Game(1, listOf(1, 2, 3, 4), "progress")
 
-        val PREPOPULATE_GUESS =  listOf(Guess(1, 1, listOf(0, 0, 0, 0)), Guess(2, 1, listOf(0, 0, 0, 1)))
                 @Volatile
                 private var INSTANCE: GameDatabase? = null
 
@@ -42,7 +41,7 @@ abstract class GameDatabase : RoomDatabase() {
                                     super.onCreate(db)
                                     // insert the data on the IO Thread
                                     ioThread {
-                                        getInstance(context).gameDao.insertGame(PREPOPULATE_GAME, PREPOPULATE_GUESS)
+                                        getInstance(context).gameDao.insertOnlyGame(PREPOPULATE_GAME)
                                     }
                                 }
                             })

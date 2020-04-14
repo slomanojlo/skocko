@@ -21,8 +21,10 @@ class GameFragment : Fragment() {
      * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
      * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = FragmentGameBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
@@ -36,11 +38,22 @@ class GameFragment : Fragment() {
         binding.rwGuess.adapter =
             GameAdapter(
                 GameAdapter.OnClickListener {
-//                    viewModel.selectBaseCurrency(it)
+                    //                    viewModel.selectBaseCurrency(it)
                 })
+
+
+        binding.button.setOnClickListener {
+            viewModel.makeGuess(binding.etInput.text.toString())
+        }
+
+        binding.btnPlayAgain.setOnClickListener {
+            viewModel.playAgain()
+        }
+
 
 
         return binding.root
     }
+
 
 }
