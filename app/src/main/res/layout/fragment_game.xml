@@ -15,8 +15,9 @@
         android:layout_height="match_parent"
         tools:context=".GameActivity">
 
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rw_Guess"
+            android:id="@+id/rwGuesses"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -28,37 +29,137 @@
             app:layout_constraintVertical_bias="0.0"
             app:listData="@{viewModel.game}" />
 
-        <EditText
-            android:id="@+id/etInput"
+        <TextView
+            android:id="@+id/twGuess"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:bindGuess="@{viewModel.symbol}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/btnClear"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnGuess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="Guess!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnGuess" />
 
         <Button
             android:id="@+id/btnPlayAgain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Play Again"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/btnGuess"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/twSolution"
+            android:id="@+id/twState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/etInput"
-            app:layout_constraintStart_toStartOf="@+id/rw_Guess"
+            app:layout_constraintBottom_toTopOf="@+id/twGuess"
+            app:layout_constraintStart_toStartOf="@+id/rwGuesses"
             app:status="@{viewModel.game.game.state}" />
+
+        <ImageButton
+            android:id="@+id/btn0"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:text="0"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="1"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+            app:layout_constraintStart_toEndOf="@+id/btn0" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="2"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+            app:layout_constraintStart_toEndOf="@+id/btn1" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="3"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+            app:layout_constraintStart_toEndOf="@+id/btn2" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="4"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+            app:layout_constraintStart_toEndOf="@+id/btn3" />
+
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="5"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+            app:layout_constraintStart_toEndOf="@+id/btn4" />
+
+
+
+
+
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/gridview"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/rwGuesses"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="9"
+                app:layout_constraintBottom_toBottomOf="@+id/gridview"
+                app:layout_constraintStart_toEndOf="@+id/btn3" />
+
+
+            <Button
+                android:id="@+id/btn10"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="10"
+                app:layout_constraintBottom_toBottomOf="@+id/gridview"
+                app:layout_constraintStart_toStartOf="@+id/rwGuesses" />
+
+
+        </androidx.gridlayout.widget.GridLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

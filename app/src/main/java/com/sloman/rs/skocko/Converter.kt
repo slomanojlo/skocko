@@ -23,7 +23,7 @@ class Converter {
     @TypeConverter
     fun writingStringFromList(list: List<Int>): String {
         var s = ""
-        for (i in list) s += ",$i"
+        for (i in list) s += "$i,"
         return s
     }
 
