@@ -20,6 +20,14 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     val symbol: MutableLiveData<String?> = MutableLiveData("")
 
+    val symbolList: LiveData<List<Symbol>> = MutableLiveData(listOf(
+        Symbol(0, R.drawable.ic_launcher_foreground),
+        Symbol(1, R.drawable.ic_launcher_foreground),
+        Symbol(2, R.drawable.ic_launcher_foreground),
+        Symbol(3, R.drawable.ic_launcher_foreground),
+        Symbol(4, R.drawable.ic_launcher_foreground),
+        Symbol(5, R.drawable.ic_launcher_background)))
+
     val game: LiveData<GameWithGuesses?>
         get() = _game
 

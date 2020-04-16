@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rwSymbols"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,95 +70,18 @@
             app:layout_constraintStart_toStartOf="@+id/rwGuesses"
             app:status="@{viewModel.game.game.state}" />
 
-        <ImageButton
-            android:id="@+id/btn0"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:src="@mipmap/ic_launcher_round"
-            android:text="0"
-            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
-            app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/btn1"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="1"
-            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
-            app:layout_constraintStart_toEndOf="@+id/btn0" />
-
-        <Button
-            android:id="@+id/btn2"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="2"
-            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
-            app:layout_constraintStart_toEndOf="@+id/btn1" />
-
-        <Button
-            android:id="@+id/btn3"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="3"
-            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
-            app:layout_constraintStart_toEndOf="@+id/btn2" />
-
-        <Button
-            android:id="@+id/btn4"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="4"
-            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
-            app:layout_constraintStart_toEndOf="@+id/btn3" />
-
-        <Button
-            android:id="@+id/btn5"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="5"
-            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
-            app:layout_constraintStart_toEndOf="@+id/btn4" />
-
-
-
-
-
-        <androidx.gridlayout.widget.GridLayout
-            android:id="@+id/gridview"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rwSymbols"
             android:layout_width="0dp"
             android:layout_height="80dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/rwGuesses"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <Button
-                android:id="@+id/btn9"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="9"
-                app:layout_constraintBottom_toBottomOf="@+id/gridview"
-                app:layout_constraintStart_toEndOf="@+id/btn3" />
-
-
-            <Button
-                android:id="@+id/btn10"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="10"
-                app:layout_constraintBottom_toBottomOf="@+id/gridview"
-                app:layout_constraintStart_toStartOf="@+id/rwGuesses" />
-
-
-        </androidx.gridlayout.widget.GridLayout>
+            app:symbolData="@{viewModel.symbolList}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.sloman.rs.skocko
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sloman.rs.skocko.databinding.GameItemBinding
 
-class GameAdapter(val onClickListener: OnClickListener ) :
+class GameAdapter(private val onClickListener: OnClickListenerGuess ) :
     ListAdapter<Guess, GameAdapter.GameViewHolder>(DiffCallback) {
     /**
      * The RatePairViewHolder constructor takes the binding variable from the associated
@@ -55,7 +56,6 @@ class GameAdapter(val onClickListener: OnClickListener ) :
             onClickListener.onClick(guess)
         }
 
-
         holder.bind(guess)
     }
 
@@ -64,7 +64,7 @@ class GameAdapter(val onClickListener: OnClickListener ) :
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [MarsProperty]
      */
-    class OnClickListener(val clickListener: (guess: Guess) -> Unit) {
+    class OnClickListenerGuess(val clickListener: (guess: Guess) -> Unit) {
         fun onClick(guess: Guess) = clickListener(guess)
     }
 

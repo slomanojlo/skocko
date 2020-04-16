@@ -37,14 +37,14 @@ class GameFragment : Fragment() {
 //         tells the viewModel when our property is clicked
         binding.rwGuesses.adapter =
             GameAdapter(
-                GameAdapter.OnClickListener {
-                    //                    viewModel.selectBaseCurrency(it)
+                GameAdapter.OnClickListenerGuess {
                 })
 
+        binding.rwSymbols.adapter =
+            SymbolAdapter(SymbolAdapter.OnClickListenerSymbol {
+                    viewModel.addSymbol(it.id.toString())
+            })
 
-        binding.btnGuess.setOnClickListener {
-            viewModel.makeGuess(binding.twGuess.text.toString())
-        }
 
         binding.btnGuess.setOnClickListener {
             viewModel.makeGuess(binding.twGuess.text.toString())
@@ -59,32 +59,12 @@ class GameFragment : Fragment() {
             viewModel.playAgain()
         }
 
-        binding.btn0.setOnClickListener {
-            viewModel.addSymbol("0")
-        }
-
-        binding.btn1.setOnClickListener {
-            viewModel.addSymbol(binding.btn1.text.toString())
-        }
-
-        binding.btn2.setOnClickListener {
-            viewModel.addSymbol(binding.btn2.text.toString())
-        }
-
-        binding.btn3.setOnClickListener {
-            viewModel.addSymbol(binding.btn3.text.toString())
-        }
-        binding.btn4.setOnClickListener {
-            viewModel.addSymbol(binding.btn4.text.toString())
-        }
-
-        binding.btn5.setOnClickListener {
-            viewModel.addSymbol(binding.btn5.text.toString())
-        }
 
 
         return binding.root
     }
 
-
 }
+
+
+
