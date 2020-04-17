@@ -35,7 +35,6 @@ class GameAdapter(private val onClickListener: OnClickListenerGuess ) :
         }
 
         override fun areContentsTheSame(oldItem: Guess, newItem: Guess): Boolean {
-            //TODO
             return oldItem.guesses == newItem.guesses
         }
     }

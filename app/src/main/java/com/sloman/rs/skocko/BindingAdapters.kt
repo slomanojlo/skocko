@@ -48,11 +48,9 @@ fun bindGuess(twGuess: TextView, userGuess: String?) {
 
 @BindingAdapter("bindImageUrl")
 fun bindImageUrl(imgView : ImageView, imgUrl: Int){
-
-
     imgUrl?.let {
         Glide.with(imgView.context)
-            .load(imgUrl)
+            .load(Constants.SYMBOLS[imgUrl])
             .into(imgView)
     }
 }
