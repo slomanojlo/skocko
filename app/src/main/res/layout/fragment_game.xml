@@ -29,36 +29,24 @@
             app:layout_constraintVertical_bias="0.0"
             app:listData="@{viewModel.game}" />
 
-        <TextView
-            android:id="@+id/twGuess"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:bindGuess="@{viewModel.symbol}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnClear"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btnGuess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Guess!"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/btnClear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clear"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnGuess" />
 
         <Button
             android:id="@+id/btnPlayAgain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Play Again"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintBottom_toTopOf="@+id/btnGuess"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -66,7 +54,7 @@
             android:id="@+id/twState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/twGuess"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
             app:layout_constraintStart_toStartOf="@+id/rwGuesses"
             app:status="@{viewModel.game.game.state}" />
 
@@ -82,6 +70,17 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:symbolData="@{viewModel.symbolList}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rwGuessTry"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            app:guessData="@{viewModel.guessList}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlayAgain"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

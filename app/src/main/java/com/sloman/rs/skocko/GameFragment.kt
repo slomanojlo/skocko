@@ -42,17 +42,19 @@ class GameFragment : Fragment() {
 
         binding.rwSymbols.adapter =
             SymbolAdapter(SymbolAdapter.OnClickListenerSymbol {
-                    viewModel.addSymbol(it.id.toString())
+                    viewModel.addSymbol(it.id)
             })
 
+        binding.rwGuessTry.adapter =
+            GuessAdapter(
+                GuessAdapter.OnClickListenerGuess {
+                    viewModel.clearGuess()
+                })
 
         binding.btnGuess.setOnClickListener {
-            viewModel.makeGuess(binding.twGuess.text.toString())
+            viewModel.makeGuess()
         }
 
-        binding.btnClear.setOnClickListener {
-            viewModel.clearGuess()
-        }
 
 
         binding.btnPlayAgain.setOnClickListener {

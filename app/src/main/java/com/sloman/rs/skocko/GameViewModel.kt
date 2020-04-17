@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     companion object {
-        const val GUESS_MAX = 8 //Maximum ammount of guesses
+        const val GUESS_MAX = 8 //Maximum amount of guesses
         const val SYMBOL_NO = 5 //Number of symbols in game
         const val GUESS_SIZE = 4 //Number of symbols in one solution
     }
@@ -18,15 +18,16 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _game = gameRepository.game
 
-    val symbol: MutableLiveData<String?> = MutableLiveData("")
+    val guessList: MutableLiveData<List<Symbol>> = MutableLiveData(mutableListOf())
+
 
     val symbolList: LiveData<List<Symbol>> = MutableLiveData(listOf(
-        Symbol(0, R.drawable.ic_launcher_foreground),
-        Symbol(1, R.drawable.ic_launcher_foreground),
-        Symbol(2, R.drawable.ic_launcher_foreground),
-        Symbol(3, R.drawable.ic_launcher_foreground),
-        Symbol(4, R.drawable.ic_launcher_foreground),
-        Symbol(5, R.drawable.ic_launcher_background)))
+        Symbol(0, R.drawable.ic_human),
+        Symbol(1, R.drawable.ic_globe),
+        Symbol(2, R.drawable.ic_android),
+        Symbol(3, R.drawable.ic_shield),
+        Symbol(4, R.drawable.ic_plane),
+        Symbol(5, R.drawable.ic_tram)))
 
     val game: LiveData<GameWithGuesses?>
         get() = _game
@@ -37,11 +38,17 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         gameRepository.initialize()
     }
 
-    fun makeGuess(inputText: String) {
+    fun makeGuess() {
 
-        if (game.value!!.guessList.size != GUESS_MAX) {
+        if (guessList.value!!.size == GUESS_SIZE) {
 
-            val guess = parseGuess(inputText)
+            val guess : MutableList<Int> = mutableListOf()
+
+            for(symbol in guessList.value!!){
+                guess.add(symbol.id)
+            }
+
+
             val hits = checkGuess(guess, game.value!!.game.solution)
 
             guessId =
@@ -54,7 +61,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
             when {
                 hits[0] == GUESS_SIZE -> gameRepository.setGameState(game.value!!.game.id, "won")
-                guessId == GUESS_MAX -1 -> gameRepository.setGameState(game.value!!.game.id, "lost")
+                guessId == GUESS_MAX -> gameRepository.setGameState(game.value!!.game.id, "lost")
                 else -> clearGuess()
             }
             Log.d("Slotest", "Solution incorrect: " + game.value!!.game.solution.toString())
@@ -62,9 +69,14 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun addSymbol(input: String) {
-        symbol.value = if (symbol.value?.length == 4) symbol.value else symbol.value + input
-        Log.d("Slotest", symbol.value.toString())
+    fun addSymbol(input: Int) {
+
+        if(guessList.value?.size != GUESS_SIZE){
+            val tempList: MutableList<Symbol> = (guessList.value!!).toMutableList()
+            tempList.add(Symbol(input, Constants.SYMBOLS[input]))
+            guessList.value = tempList
+            guessList.notifyObserver()
+        }
     }
 
     fun playAgain() {
@@ -73,7 +85,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun clearGuess() {
-        symbol.value = ""
+        guessList.value = mutableListOf()
     }
 
     private fun createRandomArray(): List<Int> {
@@ -86,13 +98,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
-    fun parseGuess(guess: String): List<Int> {
-
-        return listOf(
-            guess.substring(0, 1).toInt(), guess.substring(1, 2).toInt(),
-            guess.substring(2, 3).toInt(), guess.substring(3, 4).toInt()
-        )
-    }
 
     fun checkGuess(guessList: List<Int>, solutionList: List<Int>): List<Int> {
 
@@ -125,6 +130,10 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         return listOf(exactMatch, wrongPlaceMatch)
 
 
+    }
+
+    fun <T> MutableLiveData<T>.notifyObserver() {
+        this.value = this.value
     }
 
 }

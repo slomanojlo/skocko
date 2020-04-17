@@ -5,14 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sloman.rs.skocko.databinding.SymbolItemBinding
+import com.sloman.rs.skocko.databinding.GuessItemBinding
+
+class GuessAdapter(private val onClickListener: GuessAdapter.OnClickListenerGuess) :
+    ListAdapter<Symbol, GuessAdapter.GuessViewHolder>(DiffCallback) {
 
 
-class SymbolAdapter (private val onClickListener: OnClickListenerSymbol) :
-    ListAdapter<Symbol, SymbolAdapter.SymbolViewHolder>(DiffCallback) {
-
-
-    class SymbolViewHolder(private var binding: SymbolItemBinding) :
+    class GuessViewHolder(private var binding: GuessItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(symbol: Symbol) {
             binding.property = symbol
@@ -22,16 +21,18 @@ class SymbolAdapter (private val onClickListener: OnClickListenerSymbol) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): SymbolViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): GuessViewHolder {
 
-        return SymbolViewHolder(SymbolItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return GuessViewHolder(GuessItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     /**
      * Replaces the contents of a view (invoked by the layout manager)
      */
-    override fun onBindViewHolder(holder: SymbolViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GuessViewHolder, position: Int) {
         val symbol = getItem(position)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(symbol)
@@ -56,7 +57,7 @@ class SymbolAdapter (private val onClickListener: OnClickListenerSymbol) :
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [MarsProperty]
      */
-    class OnClickListenerSymbol(val clickListener: (symbol: Symbol) -> Unit) {
+    class OnClickListenerGuess(val clickListener: (symbol: Symbol) -> Unit) {
         fun onClick(symbol: Symbol) = clickListener(symbol)
     }
 
