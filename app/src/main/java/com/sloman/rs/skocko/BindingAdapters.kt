@@ -1,10 +1,9 @@
 package com.sloman.rs.skocko
 
-import android.opengl.Visibility
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,15 +17,15 @@ fun bindRecyclerView(recyclerView: RecyclerView, gameList: GameWithGuesses?) {
 }
 
 @BindingAdapter("symbolData")
-fun bindSymbolList(recyclerView: RecyclerView, symbolList: List<Symbol>?){
+fun bindSymbolList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
     val adapter = recyclerView.adapter as SymbolAdapter
-        adapter.submitList(symbolList)
+    adapter.submitList(symbolList)
 
 }
 
 @BindingAdapter("guessData")
-fun bindGuesslList(recyclerView: RecyclerView, symbolList: List<Symbol>?){
+fun bindGuesslList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
     val adapter = recyclerView.adapter as GuessAdapter
     adapter.submitList(symbolList)
@@ -51,8 +50,24 @@ fun bindStatus(stateTextView: TextView, status: String?) {
     }
 }
 
+@BindingAdapter("checkStatus")
+fun checkStatus(constraintLayout: ConstraintLayout, status: String?) {
+
+    val tag = constraintLayout.tag.toString()
+
+    if (tag == Constants.IN_PROGRESS)
+        constraintLayout.visibility =
+            if (status != null && status.isEmpty()) View.VISIBLE else View.INVISIBLE
+
+    else if (tag == Constants.GAME_OVER)
+        constraintLayout.visibility =
+            if (status != null && status.isNotEmpty()) View.VISIBLE else View.INVISIBLE
+
+}
+
+
 @BindingAdapter("bindImageUrl")
-fun bindImageUrl(imgView : ImageView, imgUrl: Int){
+fun bindImageUrl(imgView: ImageView, imgUrl: Int) {
     imgUrl.let {
         Glide.with(imgView.context)
             .load(Constants.SYMBOLS[imgUrl])
@@ -61,14 +76,13 @@ fun bindImageUrl(imgView : ImageView, imgUrl: Int){
 }
 
 @BindingAdapter("bindImageHit")
-fun bindImageHit(imgView : ImageView, hitsList: List<Int>){
+fun bindImageHit(imgView: ImageView, hitsList: List<Int>) {
 
-    val tag  = imgView.resources.getResourceName(imgView.id).split(":id/")[1].takeLast(1).toInt();
-    Log.d("Slotest", "hits: $hitsList")
-    //    1,1
-    val hitSymbol = when{
-        (hitsList[0]-1 >= tag) -> Constants.HIT_SYMBOL
-        (hitsList[1]-1 + hitsList[0] >= tag) -> Constants.WRONG_POS_SYMBOL
+    val tag = imgView.resources.getResourceName(imgView.id).split(":id/")[1].takeLast(1).toInt();
+
+    val hitSymbol = when {
+        (hitsList[0] - 1 >= tag) -> Constants.HIT_SYMBOL
+        (hitsList[1] - 1 + hitsList[0] >= tag) -> Constants.WRONG_POS_SYMBOL
         else -> 0
     }
 

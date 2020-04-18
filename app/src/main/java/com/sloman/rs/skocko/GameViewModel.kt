@@ -51,8 +51,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
             val hits = checkGuess(guess, game.value!!.game.solution)
 
-            guessId =
-                if (game.value!!.guessList.isNotEmpty()) game.value!!.guessList.size + 1 else 1
+            guessId = if (game.value!!.guessList.isNotEmpty()) game.value!!.guessList.size + 1 else 1
+
             Log.d("Slotest", guessId.toString())
 
             gameRepository.insertGuess(
@@ -60,11 +60,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             )
 
             when {
-                hits[0] == GUESS_SIZE -> gameRepository.setGameState(game.value!!.game.id, "won")
-                guessId == GUESS_MAX -> gameRepository.setGameState(game.value!!.game.id, "lost")
-                else -> clearGuess()
+                hits[0] == GUESS_SIZE -> gameRepository.setGameState(game.value!!.game.id, Constants.WON)
+                guessId == GUESS_MAX -> gameRepository.setGameState(game.value!!.game.id, Constants.LOST    )
+
             }
-            Log.d("Slotest", "Solution incorrect: " + game.value!!.game.solution.toString())
+            clearGuess()
+            Log.d("Slotest", "Correct solution: " + game.value!!.game.solution.toString())
         }
     }
 
@@ -75,12 +76,14 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             val tempList: MutableList<Symbol> = (guessList.value!!).toMutableList()
             tempList.add(Symbol(input, Constants.SYMBOLS[input]))
             guessList.value = tempList
-            guessList.notifyObserver()
         }
     }
 
     fun playAgain() {
-        gameRepository.playAgain(Game(game.value!!.game.id + 1, createRandomArray(), ""))
+        if(game.value!!.guessList.isNotEmpty()){
+            gameRepository.playAgain(Game(game.value!!.game.id + 1, createRandomArray(), ""))
+        }
+
         clearGuess()
     }
 
@@ -88,7 +91,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         guessList.value = mutableListOf()
     }
 
-    private fun createRandomArray(): List<Int> {
+    fun createRandomArray(): List<Int> {
 
         return listOf(
             java.security.SecureRandom().nextInt(SYMBOL_NO),
@@ -101,7 +104,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun checkGuess(guessList: List<Int>, solutionList: List<Int>): List<Int> {
 
+        require(guessList.size == 4)
+        require(solutionList.size == 4)
+
         val solutionMap: HashMap<Int, Int> = HashMap()
+
         var exactMatch = 0
         var wrongPlaceMatch = 0
 
@@ -131,9 +138,4 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
 
     }
-
-    fun <T> MutableLiveData<T>.notifyObserver() {
-        this.value = this.value
-    }
-
 }

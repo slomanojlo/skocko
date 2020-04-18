@@ -19,8 +19,6 @@ abstract class GameDatabase : RoomDatabase() {
     companion object {
 
         private const val DB_NAME = "game_DB"
-        val PREPOPULATE_GAME =
-            Game(1, listOf(1, 2, 3, 4), "progress")
 
                 @Volatile
                 private var INSTANCE: GameDatabase? = null
@@ -41,12 +39,22 @@ abstract class GameDatabase : RoomDatabase() {
                                     super.onCreate(db)
                                     // insert the data on the IO Thread
                                     ioThread {
-                                        getInstance(context).gameDao.insertOnlyGame(PREPOPULATE_GAME)
+                                        getInstance(context).gameDao.insertOnlyGame(Game(0, createRandomArray(), ""))
                                     }
                                 }
                             })
                             .build()
                     }
+
+        fun createRandomArray(): List<Int> {
+
+            return listOf(
+                java.security.SecureRandom().nextInt(GameViewModel.SYMBOL_NO),
+                java.security.SecureRandom().nextInt(GameViewModel.SYMBOL_NO),
+                java.security.SecureRandom().nextInt(GameViewModel.SYMBOL_NO),
+                java.security.SecureRandom().nextInt(GameViewModel.SYMBOL_NO)
+            )
+        }
 
     }
 }

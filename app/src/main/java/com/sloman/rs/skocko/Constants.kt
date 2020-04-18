@@ -13,4 +13,9 @@ object Constants {
     const val HIT_SYMBOL = R.drawable.ic_hit
     const val WRONG_POS_SYMBOL = R.drawable.ic_wrong_place
 
+    const val IN_PROGRESS = "in_progress"
+    const val GAME_OVER = "game_over"
+    const val WON = "won"
+    const val LOST = "lost"
+
 }

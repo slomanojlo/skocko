@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="property"
+            type="com.sloman.rs.skocko.Guess" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/iw0"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:bindImageUrl="@{property.guesses.get(0)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iw2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:bindImageUrl="@{property.guesses.get(2)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iw1" />
+
+        <ImageView
+            android:id="@+id/iw3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:bindImageUrl="@{property.guesses.get(3)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iw2" />
+
+
+        <ImageView
+            android:id="@+id/iw1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:bindImageUrl="@{property.guesses.get(1)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iw0" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/hitsLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iw3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iw3"
+            app:layout_constraintVertical_bias="1.0">
+
+
+            <ImageView
+                android:id="@+id/iwHit0"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:bindImageHit="@{property.hits}"
+                app:layout_constraintEnd_toStartOf="@+id/iwHit1"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iwHit1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:bindImageHit="@{property.hits}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iwHit0"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iwHit2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:bindImageHit="@{property.hits}"
+                app:layout_constraintEnd_toEndOf="@+id/iwHit0"
+                app:layout_constraintStart_toStartOf="@+id/iwHit0"
+                app:layout_constraintTop_toBottomOf="@+id/iwHit0" />
+
+            <ImageView
+                android:id="@+id/iwHit3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:bindImageHit="@{property.hits}"
+                app:layout_constraintEnd_toEndOf="@+id/iwHit1"
+                app:layout_constraintStart_toStartOf="@+id/iwHit1"
+                app:layout_constraintTop_toBottomOf="@+id/iwHit1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

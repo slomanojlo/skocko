@@ -35,31 +35,16 @@ class GameFragment : Fragment() {
 
 //         Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
 //         tells the viewModel when our property is clicked
-        binding.rwGuesses.adapter =
-            GameAdapter(
-                GameAdapter.OnClickListenerGuess {
-                })
+        binding.rwGuesses.adapter = GameAdapter(GameAdapter.OnClickListenerGuess {})
 
-        binding.rwSymbols.adapter =
-            SymbolAdapter(SymbolAdapter.OnClickListenerSymbol {
-                    viewModel.addSymbol(it.id)
-            })
+        binding.rwSymbols.adapter = SymbolAdapter(SymbolAdapter.OnClickListenerSymbol { viewModel.addSymbol(it.id) })
 
-        binding.rwGuessTry.adapter =
-            GuessAdapter(
-                GuessAdapter.OnClickListenerGuess {
-                    viewModel.clearGuess()
-                })
+        binding.rwGuessTry.adapter = GuessAdapter(GuessAdapter.OnClickListenerGuess { viewModel.clearGuess() })
 
-        binding.btnGuess.setOnClickListener {
-            viewModel.makeGuess()
-        }
+        binding.btnGuess.setOnClickListener { viewModel.makeGuess()}
 
-
-
-        binding.btnPlayAgain.setOnClickListener {
-            viewModel.playAgain()
-        }
+        binding.btnPlayAgain.setOnClickListener { viewModel.playAgain()}
+        binding.btnPlayAgainGameOver.setOnClickListener { viewModel.playAgain()}
 
 
 

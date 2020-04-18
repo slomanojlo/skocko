@@ -19,18 +19,19 @@
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline75"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
             app:layout_constraintGuide_percent=".75" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rwGuesses"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/guideline75"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline75"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,49 +39,48 @@
             app:listData="@{viewModel.game}" />
 
 
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clGameUI"
-            android:tag="in_progress"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:tag="in_progress"
+            app:checkStatus="@{viewModel.game.game.state}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline75"
-            app:layout_constraintVertical_bias="0.0"
-            app:checkStatus="@{viewModel.game.game.state}">
+            app:layout_constraintStart_toStartOf="@id/guideline75"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <Button
                 android:id="@+id/btnGuess"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Guess!"
                 android:backgroundTint="@color/colorAccent"
+                android:text="Guess!"
                 android:textColor="@color/primaryTextColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
-            android:id="@+id/btnPlayAgain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play Again"
-            android:backgroundTint="@color/colorAccent"
-            android:textColor="@color/primaryTextColor"
-            app:layout_constraintBottom_toTopOf="@+id/btnGuess"
-            app:layout_constraintEnd_toEndOf="parent" />
+                android:id="@+id/btnPlayAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Play Again"
+                android:textColor="@color/primaryTextColor"
+                app:layout_constraintBottom_toTopOf="@+id/btnGuess"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/rwGuessTry" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rwSymbols"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:orientation="horizontal"
+                android:layout_width="80dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,13 +90,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rwGuessTry"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:orientation="horizontal"
+                android:layout_height="0dp"
+                android:orientation="vertical"
                 app:guessData="@{viewModel.guessList}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnPlayAgain"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/rwSymbols"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -108,10 +109,10 @@
             android:tag="game_over"
             app:checkStatus="@{viewModel.game.game.state}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/clGameUI"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline75"
+            app:layout_constraintStart_toStartOf="@+id/guideline75"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
             <Button
@@ -124,16 +125,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/twState"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/twState" />
 
             <TextView
                 android:id="@+id/twState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnPlayAgainGameOver"
+                app:layout_constraintBottom_toTopOf="@+id/btnPlayAgainGameOver"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
