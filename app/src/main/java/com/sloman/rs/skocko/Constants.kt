@@ -3,11 +3,11 @@ package com.sloman.rs.skocko
 object Constants {
     val SYMBOLS: List<Int> = listOf(
         R.drawable.ic_skocko,
-        R.drawable.ic_globe,
+        R.drawable.ic_meda,
         R.drawable.ic_android,
-        R.drawable.ic_shield,
+        R.drawable.ic_svinja,
         R.drawable.ic_bug,
-        R.drawable.ic_tram
+        R.drawable.ic_human
     )
 
     const val HIT_SYMBOL = R.drawable.ic_hit
