@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity (tableName = "game")
 data class Game constructor(
-    @PrimaryKey
-    val id: Int,
+    @PrimaryKey (autoGenerate = true)
+    val id: Int = 0,
     val solution : List<Int>,
     val state : String
 )

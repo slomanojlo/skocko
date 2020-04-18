@@ -22,12 +22,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
 
     val symbolList: LiveData<List<Symbol>> = MutableLiveData(listOf(
-        Symbol(0, R.drawable.ic_human),
-        Symbol(1, R.drawable.ic_globe),
-        Symbol(2, R.drawable.ic_android),
-        Symbol(3, R.drawable.ic_shield),
-        Symbol(4, R.drawable.ic_plane),
-        Symbol(5, R.drawable.ic_tram)))
+        Symbol(0, Constants.SYMBOLS[0]),
+        Symbol(1, Constants.SYMBOLS[1]),
+        Symbol(2, Constants.SYMBOLS[2]),
+        Symbol(3, Constants.SYMBOLS[3]),
+        Symbol(4, Constants.SYMBOLS[4]),
+        Symbol(5, Constants.SYMBOLS[5])))
 
     val game: LiveData<GameWithGuesses?>
         get() = _game
@@ -61,7 +61,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
             when {
                 hits[0] == GUESS_SIZE -> gameRepository.setGameState(game.value!!.game.id, Constants.WON)
-                guessId == GUESS_MAX -> gameRepository.setGameState(game.value!!.game.id, Constants.LOST    )
+                guessId == GUESS_MAX -> gameRepository.setGameState(game.value!!.game.id, Constants.LOST)
 
             }
             clearGuess()
@@ -81,7 +81,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun playAgain() {
         if(game.value!!.guessList.isNotEmpty()){
-            gameRepository.playAgain(Game(game.value!!.game.id + 1, createRandomArray(), ""))
+            gameRepository.playAgain(Game(0, createRandomArray(), ""))
         }
 
         clearGuess()
