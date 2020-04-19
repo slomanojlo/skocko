@@ -7,21 +7,21 @@ import androidx.room.*
 interface GameDao {
     @Transaction
     @Query("SELECT * from game where id = (SELECT MAX(id) FROM game) LIMIT 1")
-    fun getAll(): LiveData<GameWithGuesses?>
+    fun getCurrentGame(): LiveData<GameWithGuesses?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertOnlyGame(game: Game)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertGuesses(guessList : List<Guess>)
+    fun insertGuess(guess : Guess)
 
     @Query("UPDATE game set state = :state where id = :id")
     fun setGameState (id: Int, state: String)
 
 
     @Transaction
-    fun insertGame(game: Game, guessList: List<Guess>) {
+    fun insertGame(game: Game, guess: Guess) {
         insertOnlyGame(game)
-        insertGuesses(guessList)
+        insertGuess(guess)
     }
 }

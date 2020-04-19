@@ -31,7 +31,7 @@ class DisplayHitsTest(
             arrayOf(noDisplay, 2, listOf(0, 0), "No hits, second position"),
             arrayOf(noDisplay, 0, listOf(0, 0), "No hits, zero position"),
             arrayOf(wrongPlace, 3, listOf(2, 2), "Two hits and two wrong place, third position"),
-            arrayOf(hit, 0, listOf(2, 2), "Two hits and two wrong place,, zero position"),
+            arrayOf(hit, 0, listOf(2, 2), "Two hits and two wrong place, zero position"),
             arrayOf(noDisplay, 3, listOf(0, 3), "Three wrong place, third position")
         )
     }

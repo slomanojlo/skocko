@@ -93,7 +93,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun playAgain() {
         if (game.value!!.guessList.isNotEmpty()) {
-            gameRepository.playAgain(Game(0, createRandomArray(), ""))
+            gameRepository.insertOnlyGame(Game(0, createRandomArray(), ""))
         }
 
         clearGuess()

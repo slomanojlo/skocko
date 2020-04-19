@@ -4,19 +4,19 @@ import androidx.lifecycle.LiveData
 
 class GameRepository(private val database: GameDatabase){
 
-    val game: LiveData<GameWithGuesses?> = database.gameDao.getAll()
+    val game: LiveData<GameWithGuesses?> = database.gameDao.getCurrentGame()
 
 
     fun initialize() {
         ioThread {
-            database.gameDao.getAll()
+            database.gameDao.getCurrentGame()
         }
 
     }
 
     fun insertGuess(guess: Guess){
         ioThread {
-            database.gameDao.insertGuesses(listOf(guess))
+            database.gameDao.insertGuess(guess)
         }
     }
 
@@ -26,7 +26,7 @@ class GameRepository(private val database: GameDatabase){
         }
     }
 
-    fun playAgain(game : Game){
+    fun insertOnlyGame(game : Game){
         ioThread {
             database.gameDao.insertOnlyGame(game)
         }
