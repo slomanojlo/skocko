@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Skočko</string>
+    <string name="game_state">Game %1$s!</string>
 </resources>

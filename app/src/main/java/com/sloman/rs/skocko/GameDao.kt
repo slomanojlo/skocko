@@ -6,7 +6,6 @@ import androidx.room.*
 @Dao
 interface GameDao {
     @Transaction
-//    @Query("SELECT * from game where id = (SELECT guesses FROM guess where id = :id)")
     @Query("SELECT * from game where id = (SELECT MAX(id) FROM game) LIMIT 1")
     fun getAll(): LiveData<GameWithGuesses?>
 

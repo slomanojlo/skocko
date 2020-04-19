@@ -1,12 +1,13 @@
 package com.sloman.rs.skocko
 
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.sloman.rs.skocko.Constants.NO_DISPLAY
 
 
 @BindingAdapter("listData")
@@ -32,23 +33,7 @@ fun bindGuesslList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
 }
 
-@BindingAdapter("status")
-fun bindStatus(stateTextView: TextView, status: String?) {
-    when (status) {
-        "won" -> {
-            stateTextView.visibility = View.VISIBLE
-            stateTextView.text = "GAME WON!"
-        }
-        "lost" -> {
-            stateTextView.visibility = View.VISIBLE
-            stateTextView.text = "GAME LOST"
-        }
-        else -> {
-            stateTextView.visibility = View.INVISIBLE
-            stateTextView.text = ""
-        }
-    }
-}
+
 
 @BindingAdapter("checkStatus")
 fun checkStatus(constraintLayout: ConstraintLayout, status: String?) {
@@ -58,19 +43,17 @@ fun checkStatus(constraintLayout: ConstraintLayout, status: String?) {
     if (tag == Constants.IN_PROGRESS)
         constraintLayout.visibility =
             if (status != null && status.isEmpty()) View.VISIBLE else View.INVISIBLE
-
     else if (tag == Constants.GAME_OVER)
         constraintLayout.visibility =
             if (status != null && status.isNotEmpty()) View.VISIBLE else View.INVISIBLE
 
 }
 
-
 @BindingAdapter("bindImageUrl")
-fun bindImageUrl(imgView: ImageView, imgUrl: Int) {
-    imgUrl.let {
+fun bindImageUrl(imgView: ImageView, imgUri: Int) {
+    imgUri.let {
         Glide.with(imgView.context)
-            .load(Constants.SYMBOLS[imgUrl])
+            .load(Constants.SYMBOLS[imgUri])
             .into(imgView)
     }
 }
@@ -78,25 +61,29 @@ fun bindImageUrl(imgView: ImageView, imgUrl: Int) {
 @BindingAdapter("bindImageHit")
 fun bindImageHit(imgView: ImageView, hitsList: List<Int>) {
 
-    val tag = imgView.resources.getResourceName(imgView.id).split(":id/")[1].takeLast(1).toInt();
+    val tag =
+        imgView.let { it.resources.getResourceName(it.id).split(":id/")[1].takeLast(1).toInt() }
 
-    val hitSymbol = when {
-        (hitsList[0] - 1 >= tag) -> Constants.HIT_SYMBOL
-        (hitsList[1] - 1 + hitsList[0] >= tag) -> Constants.WRONG_POS_SYMBOL
-        else -> 0
-    }
+    val hitSymbol = diplayHit(hitsList, tag)
 
 
-    if (hitSymbol != 0) {
+    if (hitSymbol != NO_DISPLAY) {
         imgView.visibility = View.VISIBLE
         imgView.let {
-            Glide.with(imgView.context)
+            Glide.with(it.context)
                 .load(hitSymbol)
-                .into(imgView)
+                .into(it)
         }
     } else {
         imgView.visibility = View.INVISIBLE
     }
+}
+
+
+@BindingAdapter("bindCheckGuess")
+fun bindCheckGuess(btn : Button, guessList : List<Symbol>){
+
+    btn.isEnabled.apply{guessList.size == Constants.GUESS_SIZE}
 
 }
 

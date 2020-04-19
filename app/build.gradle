@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jetbrains.dokka-android'
 
 android {
     compileSdkVersion 29
@@ -25,6 +26,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    dokka {
+        outputFormat = 'javadoc'
+        outputDirectory = "$buildDir/javadoc"
     }
 
 }

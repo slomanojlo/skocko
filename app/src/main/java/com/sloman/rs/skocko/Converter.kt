@@ -1,14 +1,15 @@
 package com.sloman.rs.skocko
 
 import androidx.room.TypeConverter
+import com.sloman.rs.skocko.Constants.SEPARATOR
 
 class Converter {
 
     @TypeConverter
-    fun gettingListFromString(hit: String): List<Int> {
+    fun parseListFromString(hit: String): List<Int> {
         val list = mutableListOf<Int>()
 
-        val array = hit.split(",".toRegex()).dropLastWhile {
+        val array = hit.split(SEPARATOR.toRegex()).dropLastWhile {
             it.isEmpty()
         }.toTypedArray()
 
@@ -21,10 +22,11 @@ class Converter {
     }
 
     @TypeConverter
-    fun writingStringFromList(list: List<Int>): String {
+    fun parseStringFromList(list: List<Int>): String {
         var s = ""
-        for (i in list) s += "$i,"
+        for (i in list) s += "$i$SEPARATOR"
         return s
     }
 
 }
+

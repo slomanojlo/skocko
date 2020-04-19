@@ -21,10 +21,7 @@ class GuessAdapter(private val onClickListener: GuessAdapter.OnClickListenerGues
         }
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): GuessViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuessViewHolder {
 
         return GuessViewHolder(GuessItemBinding.inflate(LayoutInflater.from(parent.context)))
     }

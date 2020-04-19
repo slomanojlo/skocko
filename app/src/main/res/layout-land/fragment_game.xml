@@ -138,7 +138,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:status="@{viewModel.game.game.state}" />
+                android:text="@{@string/game_state(viewModel.game.game.state)}" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

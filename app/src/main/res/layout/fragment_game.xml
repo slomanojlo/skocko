@@ -58,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Guess!"
+                app:bindCheckGuess ="@{viewModel.guessList}"
                 android:backgroundTint="@color/colorAccent"
                 android:textColor="@color/primaryTextColor"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -137,7 +138,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:status="@{viewModel.game.game.state}" />
+                android:text="@{@string/game_state(viewModel.game.game.state)}" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
