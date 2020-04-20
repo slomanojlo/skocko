@@ -1,0 +1,2 @@
+# skocko
+Mastermind game
