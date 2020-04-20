@@ -44,7 +44,6 @@ dependencies {
     implementation "androidx.core:core-ktx:$version_core_ktx"
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
-    implementation "com.google.code.gson:gson:$version_gson"
 
     testImplementation "junit:junit:$version_junit"
     testImplementation "org.mockito:mockito-inline:$version_mockito_inline"
@@ -52,7 +51,6 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$version_core_testing"
     testImplementation "androidx.test:core-ktx:$version_core_ktx"
     testImplementation "androidx.test.ext:junit-ktx:$version_test_junit_ktx"
-    testImplementation "org.robolectric:robolectric:$version_robolectric"
     testImplementation "com.jraska.livedata:testing-ktx:$version_livedata_testing_ktx"
 
     androidTestImplementation "androidx.test.ext:junit:$version_ext_junit"
@@ -71,6 +69,11 @@ dependencies {
     // Core with Ktx
     implementation "androidx.core:core-ktx:$version_core"
 
+    // Robolectric
+    testImplementation "org.robolectric:robolectric:$version_robolectric"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$version_gson"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
@@ -91,7 +94,7 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.androidxArchVersion"
 
-    //Debug DB
+    // Debug DB
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
 }

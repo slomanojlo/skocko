@@ -16,7 +16,7 @@ interface GameDao {
     fun insertGuess(guess : Guess)
 
     @Query("UPDATE game set state = :state where id = :id")
-    fun setGameState (id: Int, state: String)
+    fun setGameState (id: Int, state: String) : Int
 
 
     @Transaction

@@ -6,8 +6,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.jraska.livedata.test
-import com.nhaarman.mockitokotlin2.argumentCaptor
-import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.spy
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.After
@@ -46,7 +44,7 @@ open class GameRepositoryTest {
         val dao = spy(db.gameDao)
         val testGame = Game(0, listOf(0, 0, 0, 0), "")
 
-        val repo = GameRepository(db)
+        val repo = GameRoomRepository(dao)
 
         repo.insertOnlyGame(testGame)
 

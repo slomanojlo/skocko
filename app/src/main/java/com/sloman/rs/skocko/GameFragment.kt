@@ -10,25 +10,21 @@ import com.sloman.rs.skocko.databinding.FragmentGameBinding
 
 class GameFragment : Fragment() {
 
-    /**
-     * Lazily initialize our [GameViewModel]. n
-     */
-    private val viewModel: GameViewModel by lazy {
-        ViewModelProvider(this, defaultViewModelProviderFactory)[GameViewModel::class.java]
-    }
+private lateinit var gameViewModel: GameViewModel
 
-    /**
-     * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
-     * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
-     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        gameViewModel = obtainViewModel(GameViewModel::class.java)
+
         val binding = FragmentGameBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
+
+        val viewModel = ViewModelProvider(this, defaultViewModelProviderFactory)[GameViewModel::class.java]
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel

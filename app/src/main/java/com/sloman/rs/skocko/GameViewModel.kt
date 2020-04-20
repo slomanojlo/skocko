@@ -1,13 +1,12 @@
 package com.sloman.rs.skocko
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.sloman.rs.skocko.Constants.GUESS_SIZE
 
-class GameViewModel(application: Application) : AndroidViewModel(application) {
+class GameViewModel(private val gameRepo : GameRepository) : ViewModel() {
 
     companion object {
         const val GUESS_MAX = 8 //Maximum amount of guesses
@@ -15,9 +14,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    private val gameRepository = GameRepository(GameDatabase.getInstance(application))
 
-    private val _game = gameRepository.game
+
+    private val _game = gameRepo.getCurrentGame()
 
     /**GuessList of current guesses made by user*/
     val guessList: MutableLiveData<List<Symbol>> = MutableLiveData(mutableListOf())
@@ -40,7 +39,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     /**Initialize repository and retrieve initial data when created**/
     init {
-        gameRepository.initialize()
+        gameRepo.getCurrentGame()
     }
 
     fun makeGuess() {
@@ -58,7 +57,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             if (game.value!!.guessList.isNotEmpty()) game.value!!.guessList.size + 1 else 1
 
 
-        gameRepository.insertGuess(
+        gameRepo.insertGuess(
             Guess(guessId, game.value!!.game.id, guess, hits)
         )
 
@@ -69,11 +68,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun updateGameState(hits: List<Int>) {
         when {
-            hits[0] == GUESS_SIZE -> gameRepository.setGameState(
+            hits[0] == GUESS_SIZE -> gameRepo.setGameState(
                 game.value!!.game.id,
                 Constants.WON
             )
-            guessId == GUESS_MAX -> gameRepository.setGameState(
+            guessId == GUESS_MAX -> gameRepo.setGameState(
                 game.value!!.game.id,
                 Constants.LOST
             )
@@ -93,7 +92,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun playAgain() {
         if (game.value!!.guessList.isNotEmpty()) {
-            gameRepository.insertOnlyGame(Game(0, createRandomArray(), ""))
+            gameRepo.insertOnlyGame(Game(0, createRandomArray(), ""))
         }
 
         clearGuess()
