@@ -1,9 +1,11 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.util
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.sloman.rs.skocko.viewmodel.GameViewModel
+import com.sloman.rs.skocko.repo.GameRepository
 
-
+/** Custom Factory to retrieve or create (only when needed) the [ViewModel]  */
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(private val gameRepo: GameRepository) :
     ViewModelProvider.NewInstanceFactory() {

@@ -2,6 +2,6 @@
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/game_fragment"
-    class="com.sloman.rs.skocko.GameFragment"
+    class="com.sloman.rs.skocko.ui.GameFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />

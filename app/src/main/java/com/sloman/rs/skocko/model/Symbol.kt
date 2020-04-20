@@ -1,4 +1,4 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.model
 
 data class Symbol constructor(
     val id : Int,

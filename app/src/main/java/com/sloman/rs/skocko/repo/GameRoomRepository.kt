@@ -1,8 +1,15 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.repo
 
 import androidx.lifecycle.LiveData
+import com.sloman.rs.skocko.db.GameDao
+import com.sloman.rs.skocko.util.ioThread
+import com.sloman.rs.skocko.model.Game
+import com.sloman.rs.skocko.model.GameWithGuesses
+import com.sloman.rs.skocko.model.Guess
 
-class GameRoomRepository(private val gameDao: GameDao) : GameRepository {
+/** Making the bond between the [GameRoomRepository] and the [GameDao] */
+class GameRoomRepository(private val gameDao: GameDao) :
+    GameRepository {
 
     val game: LiveData<GameWithGuesses?> = gameDao.getCurrentGame()
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="property"
-            type="com.sloman.rs.skocko.Symbol" />
+            type="com.sloman.rs.skocko.model.Symbol" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

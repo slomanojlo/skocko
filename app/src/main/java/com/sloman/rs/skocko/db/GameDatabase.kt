@@ -1,4 +1,4 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.db
 
 import android.content.Context
 import androidx.room.Database
@@ -6,7 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.sloman.rs.skocko.util.Converter
+import com.sloman.rs.skocko.viewmodel.GameViewModel
+import com.sloman.rs.skocko.util.ioThread
+import com.sloman.rs.skocko.model.Game
+import com.sloman.rs.skocko.model.Guess
+import java.security.SecureRandom
 
+/** [Database] class for declaring, instantiating, and prepopulating the [GameDatabase].*/
 @Database(
     entities = [Game::class, Guess::class],
     version = 1,
@@ -25,7 +32,10 @@ abstract class GameDatabase : RoomDatabase() {
 
                 fun getInstance(context: Context): GameDatabase =
                     INSTANCE ?: synchronized(this) {
-                        INSTANCE ?: create(context).also { INSTANCE = it }
+                        INSTANCE
+                            ?: create(
+                                context
+                            ).also { INSTANCE = it }
                     }
 
                     private fun create(context: Context): GameDatabase {
@@ -39,20 +49,29 @@ abstract class GameDatabase : RoomDatabase() {
                                     super.onCreate(db)
                                     // insert the data on the IO Thread
                                     ioThread {
-                                        getInstance(context).gameDao.insertOnlyGame(Game(0, createRandomArray(), ""))
+                                        getInstance(
+                                            context
+                                        ).gameDao.insertOnlyGame(
+                                            Game(
+                                                0,
+                                                createRandomArray(),
+                                                ""
+                                            )
+                                        )
                                     }
                                 }
                             })
                             .build()
                     }
 
+        /**Create random array of Int using [SecureRandom] lib. */
         fun createRandomArray(): List<Int> {
 
             return listOf(
-                java.security.SecureRandom().nextInt(GameViewModel.SYMBOL_NO),
-                java.security.SecureRandom().nextInt(GameViewModel.SYMBOL_NO),
-                java.security.SecureRandom().nextInt(GameViewModel.SYMBOL_NO),
-                java.security.SecureRandom().nextInt(GameViewModel.SYMBOL_NO)
+                SecureRandom().nextInt(GameViewModel.SYMBOL_NO),
+                SecureRandom().nextInt(GameViewModel.SYMBOL_NO),
+                SecureRandom().nextInt(GameViewModel.SYMBOL_NO),
+                SecureRandom().nextInt(GameViewModel.SYMBOL_NO)
             )
         }
 

@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.sloman.rs.skocko.GameViewModel" />
+            type="com.sloman.rs.skocko.viewmodel.GameViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="2dp"
-        tools:context=".GameActivity">
+        tools:context=".ui.GameActivity">
 
 
         <androidx.constraintlayout.widget.Guideline

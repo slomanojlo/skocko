@@ -1,10 +1,13 @@
 package com.sloman.rs.skocko
 
+import com.sloman.rs.skocko.viewmodel.checkGuess
+import com.sloman.rs.skocko.util.Constants
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
+/** Testing the Mastermind algorithm with JUnit.*/
 @RunWith(Parameterized::class)
 class MastermindAlgoTest(
     private val expectedList: List<Int>,
@@ -30,18 +33,19 @@ class MastermindAlgoTest(
             arrayOf(listOf(2,2), listOf(2,3,4,5), listOf(2,3,5,4), "Two hits with two wrong place hits"),
             arrayOf(listOf(2,1), listOf(2,3,4,5), listOf(2,3,0,4), "Two hits with one wrong place hit"),
             arrayOf(listOf(2,1), listOf(2,3,4,5), listOf(2,3,0,4), "Two hits with one wrong place hit")
-
         )
     }
 
     @Test
-
     fun test_checkGuess(){
 
         require(guessList.size == Constants.GUESS_SIZE)
         require(solutionList.size == Constants.GUESS_SIZE)
 
-        val actual = checkGuess(guessList, solutionList)
+        val actual = checkGuess(
+            guessList,
+            solutionList
+        )
 
         assertEquals(expectedList, actual)
     }

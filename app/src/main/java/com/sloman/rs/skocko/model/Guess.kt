@@ -1,8 +1,9 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import com.sloman.rs.skocko.model.Game
 
 @Entity (tableName = "guess",
     primaryKeys = ["guessId" , "id"],

@@ -5,9 +5,11 @@ import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import com.sloman.rs.skocko.db.GameDatabase
+import com.sloman.rs.skocko.model.Game
+import com.sloman.rs.skocko.model.Guess
+import com.sloman.rs.skocko.repo.GameRoomRepository
 import com.jraska.livedata.test
-import com.nhaarman.mockitokotlin2.spy
-import com.nhaarman.mockitokotlin2.verify
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -15,9 +17,13 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
 import org.junit.runner.RunWith
+import org.mockito.Mockito.spy
+import org.mockito.Mockito.verify
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
+
+/** Testing the [GameRepositoryTest] with Junit, Mockito and Robolectric. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.P])
 open class GameRepositoryTest {
@@ -105,7 +111,6 @@ open class GameRepositoryTest {
 
         assertEquals(actual, expected)
     }
-
 
 
     @After

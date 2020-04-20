@@ -1,10 +1,11 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.util
 
 import androidx.room.TypeConverter
-import com.sloman.rs.skocko.Constants.SEPARATOR
+import com.sloman.rs.skocko.util.Constants.SEPARATOR
 
 class Converter {
 
+    /** Used for converting [String] to [List] when accessing DB */
     @TypeConverter
     fun parseListFromString(hit: String): List<Int> {
         val list = mutableListOf<Int>()
@@ -21,6 +22,8 @@ class Converter {
         return list
     }
 
+
+    /** Used for converting [List] to [String] when accessing DB */
     @TypeConverter
     fun parseStringFromList(list: List<Int>): String {
         var s = ""

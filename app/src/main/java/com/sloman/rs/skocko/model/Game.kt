@@ -1,4 +1,4 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

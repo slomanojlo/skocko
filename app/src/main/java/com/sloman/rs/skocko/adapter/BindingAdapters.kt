@@ -1,4 +1,4 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.adapter
 
 import android.view.View
 import android.widget.Button
@@ -7,9 +7,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.sloman.rs.skocko.Constants.NO_DISPLAY
+import com.sloman.rs.skocko.util.Constants.NO_DISPLAY
+import com.sloman.rs.skocko.model.GameWithGuesses
+import com.sloman.rs.skocko.model.Symbol
+import com.sloman.rs.skocko.util.Constants
+import com.sloman.rs.skocko.viewmodel.diplayHit
 
-
+/**BindingAdapter for the game rounds RecyclerView ListAdapter having guesses and hits*/
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, gameList: GameWithGuesses?) {
     val adapter = recyclerView.adapter as GameAdapter
@@ -17,6 +21,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, gameList: GameWithGuesses?) {
     adapter.submitList(gameList?.guessList)
 }
 
+/**BindingAdapter for the static [RecyclerView] ListAdapter displaying possible symbols to choose*/
 @BindingAdapter("symbolData")
 fun bindSymbolList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
@@ -25,6 +30,7 @@ fun bindSymbolList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
 }
 
+/**BindingAdapter for the dynamic [RecyclerView] ListAdapter displaying user's current symbols choice*/
 @BindingAdapter("guessData")
 fun bindGuesslList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
@@ -33,8 +39,7 @@ fun bindGuesslList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
 }
 
-
-
+/**BindingAdapter for two [ConstraintLayout] to switch from in_progress to game_over mode  */
 @BindingAdapter("checkStatus")
 fun checkStatus(constraintLayout: ConstraintLayout, status: String?) {
 
@@ -49,6 +54,7 @@ fun checkStatus(constraintLayout: ConstraintLayout, status: String?) {
 
 }
 
+/**BindingAdapter for [ImageView] used to inject images to views  */
 @BindingAdapter("bindImageUrl")
 fun bindImageUrl(imgView: ImageView, imgUri: Int) {
     imgUri.let {
@@ -58,6 +64,7 @@ fun bindImageUrl(imgView: ImageView, imgUri: Int) {
     }
 }
 
+/**BindingAdapter to display [ImageView] (hits or wrong place hits) using [diplayHit] algorithm */
 @BindingAdapter("bindImageHit")
 fun bindImageHit(imgView: ImageView, hitsList: List<Int>) {
 
@@ -79,13 +86,11 @@ fun bindImageHit(imgView: ImageView, hitsList: List<Int>) {
     }
 }
 
+/**Enable [Button] if the [guessList] reached [Constants.GUESS_SIZE], otherwise disable */
 
 @BindingAdapter("bindCheckGuess")
-fun bindCheckGuess(btn : Button, guessList : List<Symbol>){
+fun bindCheckGuess(btn: Button, guessList: List<Symbol>) {
 
-    btn.isEnabled.apply{guessList.size == Constants.GUESS_SIZE}
+    btn.isEnabled.apply { guessList.size == Constants.GUESS_SIZE }
 
 }
-
-
-

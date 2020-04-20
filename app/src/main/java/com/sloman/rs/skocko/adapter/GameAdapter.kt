@@ -1,4 +1,4 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,13 +6,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sloman.rs.skocko.databinding.GameItemBinding
+import com.sloman.rs.skocko.model.Guess
 
-class GameAdapter(private val onClickListener: OnClickListenerGuess ) :
-    ListAdapter<Guess, GameAdapter.GameViewHolder>(DiffCallback) {
-    /**
-     * The RatePairViewHolder constructor takes the binding variable from the associated
-     * GridViewItem, which nicely gives it access to the full [MarsProperty] information.
-     */
+/** Used for creating, populating, modifying [RecyclerView] */
+class GameAdapter(private val onClickListener: OnClickListenerGuess) :
+    ListAdapter<Guess, GameAdapter.GameViewHolder>(
+        DiffCallback
+    ) {
+
+    /**The GameViewHolder constructor takes the binding variable from the associated
+     * item, which nicely gives it access to the full [Guess] information.*/
     class GameViewHolder(private var binding: GameItemBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(guess: Guess) {
@@ -23,10 +26,8 @@ class GameAdapter(private val onClickListener: OnClickListenerGuess ) :
         }
     }
 
-    /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of [MarsProperty]
-     * has been updated.
-     */
+    /** Allows the RecyclerView to determine which items have changed when the [List] of [Guess]
+     * has been updated. Not really necessary in our case, but imprescindible for scaling up*/
     companion object DiffCallback : DiffUtil.ItemCallback<Guess>() {
 
         override fun areItemsTheSame(oldItem: Guess, newItem: Guess): Boolean {
@@ -42,12 +43,12 @@ class GameAdapter(private val onClickListener: OnClickListenerGuess ) :
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): GameViewHolder {
 
-        return GameViewHolder(GameItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return GameViewHolder(
+            GameItemBinding.inflate(LayoutInflater.from(parent.context))
+        )
     }
 
-    /**
-     * Replaces the contents of a view (invoked by the layout manager)
-     */
+    /** Replaces the contents of a view (invoked by the layout manager)*/
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val guess = getItem(position)
         holder.itemView.setOnClickListener {
@@ -57,11 +58,9 @@ class GameAdapter(private val onClickListener: OnClickListenerGuess ) :
         holder.bind(guess)
     }
 
-    /**
-     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [MarsProperty]
+    /**Custom listener that handles clicks on [RecyclerView] items.  Passes the [Guess]
      * associated with the current item to the [onClick] function.
-     * @param clickListener lambda that will be called with the current [MarsProperty]
-     */
+     * @param clickListener lambda that will be called with the current [Guess]*/
     class OnClickListenerGuess(val clickListener: (guess: Guess) -> Unit) {
         fun onClick(guess: Guess) = clickListener(guess)
     }

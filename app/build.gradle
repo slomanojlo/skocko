@@ -34,7 +34,6 @@ android {
         outputFormat = 'javadoc'
         outputDirectory = "$buildDir/javadoc"
     }
-
 }
 
 dependencies {

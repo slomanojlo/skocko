@@ -8,7 +8,7 @@
 
         <variable
             name="property"
-            type="com.sloman.rs.skocko.Guess" />
+            type="com.sloman.rs.skocko.model.Guess" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,10 +1,14 @@
 package com.sloman.rs.skocko
 
+import com.sloman.rs.skocko.viewmodel.diplayHit
+import com.sloman.rs.skocko.util.Constants
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
+
+/** Testing the DisplayHits algorithm with JUnit.*/
 @RunWith(Parameterized::class)
 class DisplayHitsTest(
     private val expectedResult: Int,
@@ -37,7 +41,10 @@ class DisplayHitsTest(
     @Test
     fun test_displayHit() {
 
-        val actual = diplayHit(hitsList, imagePosTag)
+        val actual = diplayHit(
+            hitsList,
+            imagePosTag
+        )
 
         assertEquals(expectedResult, actual)
     }

@@ -1,7 +1,11 @@
-package com.sloman.rs.skocko
+package com.sloman.rs.skocko.util
 
+import com.sloman.rs.skocko.R
+
+/**Location for storing constant values used throughout the app*/
 object Constants {
 
+    /**List of [Int] representing vector drawable ids in use*/
     val SYMBOLS: List<Int> = listOf(
         R.drawable.ic_skocko,
         R.drawable.ic_bear,
@@ -18,8 +22,8 @@ object Constants {
     const val GAME_OVER = "game_over"
     const val WON = "won"
     const val LOST = "lost"
-    const val SEPARATOR = ","
-    const val GUESS_SIZE = 4 //Number of symbols in one solution
+    const val SEPARATOR = "," /** Separator used for parsing lists to DB */
+    const val GUESS_SIZE = 4 /**Number of symbols in one guess */
     const val NO_DISPLAY: Int = 0
 
 }
