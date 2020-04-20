@@ -59,8 +59,11 @@
                 android:backgroundTint="@color/colorAccent"
                 android:text="@string/guess"
                 android:textColor="@color/primaryTextColor"
+                android:textSize="12sp"
+                app:bindCheckGuess="@{viewModel.guessList}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/rwSymbols" />
 
             <Button
                 android:id="@+id/btnPlayAgain"
@@ -69,6 +72,7 @@
                 android:backgroundTint="@color/colorAccent"
                 android:text="@string/play_again"
                 android:textColor="@color/primaryTextColor"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/btnGuess"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/rwGuessTry" />
@@ -76,13 +80,13 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rwSymbols"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintEnd_toStartOf="@+id/rwGuessTry"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:symbolData="@{viewModel.symbolList}" />
@@ -96,6 +100,7 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/rwSymbols"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -107,6 +112,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:tag="game_over"
+            android:visibility="gone"
             app:checkStatus="@{viewModel.game.game.state}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/clGameUI"

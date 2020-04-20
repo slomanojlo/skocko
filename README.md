@@ -32,6 +32,7 @@ This is an Android mobile app project that:
 * add more error handling
 * add a timer
 * implement difficulty levels
+* test on multiple devices (tested on Samsung A10 and Pixel 2)
 
 
 

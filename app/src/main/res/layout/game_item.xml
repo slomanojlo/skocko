@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -11,113 +12,148 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gameLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_margin="8dp">
+        android:padding="2dp">
 
-        <ImageView
-            android:id="@+id/iw0"
-            android:layout_width="60dp"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="58dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_percent="0.7"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/guessesLayout"
+            android:layout_width="0dp"
             android:layout_height="60dp"
-            app:bindImageUrl="@{property.guesses.get(0)}"
-            app:layout_constraintEnd_toStartOf="@+id/iw1"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="symbol 0" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/iw2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:bindImageUrl="@{property.guesses.get(2)}"
-            app:layout_constraintEnd_toStartOf="@+id/iw3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iw1"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="symbol 2" />
+            <ImageView
+                android:id="@+id/iw2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="symbol 2"
+                android:scaleType="fitCenter"
+                app:bindImageUrl="@{property.guesses.get(2)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iw3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iw1"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iw3"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:bindImageUrl="@{property.guesses.get(3)}"
-            app:layout_constraintEnd_toStartOf="@+id/hitsLayout"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iw2"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="symbol 3" />
+            <ImageView
+                android:id="@+id/iw0"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="symbol 0"
+                android:scaleType="fitCenter"
+                app:bindImageUrl="@{property.guesses.get(0)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iw1"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/iw1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="image 0"
+                android:scaleType="fitCenter"
+                app:bindImageUrl="@{property.guesses.get(1)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iw2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iw0"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iw1"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:bindImageUrl="@{property.guesses.get(1)}"
-            app:layout_constraintEnd_toStartOf="@+id/iw2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iw0"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="image 0" />
+            <ImageView
+                android:id="@+id/iw3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="symbol 3"
+                app:bindImageUrl="@{property.guesses.get(3)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iw2"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/hitsLayout"
-            android:layout_width="120dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
+            android:padding="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iw3"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent">
 
 
             <ImageView
                 android:id="@+id/iwHit0"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="hit 0"
+                android:scaleType="fitCenter"
                 app:bindImageHit="@{property.hits}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iwHit1"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="hit 0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iwHit1"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="hit 1"
+                android:scaleType="fitCenter"
                 app:bindImageHit="@{property.hits}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iwHit2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/iwHit0"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="hit 1" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iwHit2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="hit 2"
+                android:scaleType="fitCenter"
                 app:bindImageHit="@{property.hits}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iwHit3"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/iwHit1"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="hit 2" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iwHit3"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="hit 3"
+                android:scaleType="fitCenter"
                 app:bindImageHit="@{property.hits}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/iwHit2"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="hit 3" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

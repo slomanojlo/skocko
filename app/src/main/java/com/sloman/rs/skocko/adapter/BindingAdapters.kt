@@ -91,6 +91,6 @@ fun bindImageHit(imgView: ImageView, hitsList: List<Int>) {
 @BindingAdapter("bindCheckGuess")
 fun bindCheckGuess(btn: Button, guessList: List<Symbol>) {
 
-    btn.isEnabled.apply { guessList.size == Constants.GUESS_SIZE }
+    btn.isEnabled = guessList.size == Constants.GUESS_SIZE
 
 }
