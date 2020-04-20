@@ -1,0 +1,7 @@
+com.sloman.rs.skocko.adapter
+com.sloman.rs.skocko.db
+com.sloman.rs.skocko.model
+com.sloman.rs.skocko.repo
+com.sloman.rs.skocko.ui
+com.sloman.rs.skocko.util
+com.sloman.rs.skocko.viewmodel
