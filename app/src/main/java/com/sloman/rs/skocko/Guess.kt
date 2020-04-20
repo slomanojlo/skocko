@@ -1,6 +1,8 @@
 package com.sloman.rs.skocko
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
 
 @Entity (tableName = "guess",
     primaryKeys = ["guessId" , "id"],

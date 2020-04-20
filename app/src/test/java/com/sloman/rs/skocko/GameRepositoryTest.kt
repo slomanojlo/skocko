@@ -49,12 +49,62 @@ open class GameRepositoryTest {
         repo.insertOnlyGame(testGame)
 
         val expected = 1
-        val actual  = dao.getCurrentGame().test().value()?.game?.id
+        val actual  = repo.getCurrentGame().test().value()?.game?.id
 
         assertEquals(actual, expected)
         verify(dao).getCurrentGame()
     }
 
+    @Test
+    open fun test_insertThreeGames() {
+        val dao = spy(db.gameDao)
+        val testGame = Game(0, listOf(0, 0, 0, 0), "")
+
+        db.gameDao.insertOnlyGame(testGame)
+        db.gameDao.insertOnlyGame(testGame)
+        db.gameDao.insertOnlyGame(testGame)
+
+        val repo = GameRoomRepository(dao)
+
+        val expected = 3
+        val actual  = repo.getCurrentGame().test().value()?.game?.id
+
+        assertEquals(actual, expected)
+    }
+
+    @Test
+    open fun test_insertGuess() {
+        val dao = spy(db.gameDao)
+        val testGame = Game(0, listOf(0, 0, 0, 0), "")
+        val testGuess = Guess(0,1, listOf(0, 0, 0, 0), listOf(0,0))
+
+        db.gameDao.insertOnlyGame(testGame)
+        db.gameDao.insertGuess(testGuess)
+
+        val repo = GameRoomRepository(dao)
+
+        val expected = 1
+        val actual  = repo.getCurrentGame().test().value()?.guessList?.size
+
+        assertEquals(actual, expected)
+    }
+
+    @Test
+    open fun test_setState() {
+        val dao = spy(db.gameDao)
+        val testGame = Game(0, listOf(0, 0, 0, 0), "")
+        val testGuess = Guess(0,1, listOf(0, 0, 0, 0), listOf(0,0))
+        val expected = "won"
+
+        db.gameDao.insertOnlyGame(testGame)
+        db.gameDao.setGameState(1, expected)
+
+        val repo = GameRoomRepository(dao)
+
+        val actual  = repo.getCurrentGame().test().value()?.game?.state
+
+        assertEquals(actual, expected)
+    }
 
 
 

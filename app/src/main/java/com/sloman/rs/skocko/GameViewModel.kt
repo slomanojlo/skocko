@@ -14,8 +14,6 @@ class GameViewModel(private val gameRepo : GameRepository) : ViewModel() {
 
     }
 
-
-
     private val _game = gameRepo.getCurrentGame()
 
     /**GuessList of current guesses made by user*/
@@ -38,8 +36,20 @@ class GameViewModel(private val gameRepo : GameRepository) : ViewModel() {
     private var guessId = 0
 
     /**Initialize repository and retrieve initial data when created**/
-    init {
-        gameRepo.getCurrentGame()
+//    init {
+//        gameRepo.getCurrentGame()
+//    }
+
+    fun insertOnlyGame(game : Game){
+        gameRepo.insertOnlyGame(game)
+    }
+
+    fun setGameState(id : Int, state : String){
+        gameRepo.setGameState(id, state)
+    }
+
+    fun insertGuess(guess : Guess){
+        gameRepo.insertGuess(guess)
     }
 
     fun makeGuess() {
@@ -50,14 +60,13 @@ class GameViewModel(private val gameRepo : GameRepository) : ViewModel() {
             guess.add(symbol.id)
         }
 
-
         val hits = checkGuess(guess, game.value!!.game.solution)
 
         guessId =
             if (game.value!!.guessList.isNotEmpty()) game.value!!.guessList.size + 1 else 1
 
 
-        gameRepo.insertGuess(
+        insertGuess(
             Guess(guessId, game.value!!.game.id, guess, hits)
         )
 
@@ -68,11 +77,11 @@ class GameViewModel(private val gameRepo : GameRepository) : ViewModel() {
 
     private fun updateGameState(hits: List<Int>) {
         when {
-            hits[0] == GUESS_SIZE -> gameRepo.setGameState(
+            hits[0] == GUESS_SIZE -> setGameState(
                 game.value!!.game.id,
                 Constants.WON
             )
-            guessId == GUESS_MAX -> gameRepo.setGameState(
+            guessId == GUESS_MAX -> setGameState(
                 game.value!!.game.id,
                 Constants.LOST
             )
@@ -92,11 +101,11 @@ class GameViewModel(private val gameRepo : GameRepository) : ViewModel() {
 
     fun playAgain() {
         if (game.value!!.guessList.isNotEmpty()) {
-            gameRepo.insertOnlyGame(Game(0, createRandomArray(), ""))
+            insertOnlyGame(Game(0, createRandomArray(), ""))
         }
-
         clearGuess()
     }
+
 
     fun clearGuess() {
         guessList.value = mutableListOf()
@@ -111,13 +120,11 @@ class GameViewModel(private val gameRepo : GameRepository) : ViewModel() {
             java.security.SecureRandom().nextInt(SYMBOL_NO)
         )
     }
-
 }
 
 fun checkGuess(guessList: List<Int>, solutionList: List<Int>): List<Int> {
 
     val solutionMap: HashMap<Int, Int> = HashMap()
-
     var exactMatch = 0
     var wrongPlaceMatch = 0
 

@@ -1,7 +1,5 @@
 package com.sloman.rs.skocko
 
-import androidx.databinding.BindingAdapter
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
