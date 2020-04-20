@@ -45,7 +45,7 @@ class GameViewModel(private val gameRepo : GameRepository) : ViewModel() {
     private var guessId = 0
 
 
-    fun insertOnlyGame(game : Game){
+    private fun insertOnlyGame(game : Game){
         gameRepo.insertOnlyGame(game)
     }
 
@@ -53,11 +53,11 @@ class GameViewModel(private val gameRepo : GameRepository) : ViewModel() {
         gameRepo.setGameState(id, state)
     }
 
-    fun insertGuess(guess : Guess){
+    private fun insertGuess(guess : Guess){
         gameRepo.insertGuess(guess)
     }
 
-    /** Triggered when user chooses all symbols and hits the Guess [Button]. */
+    /** Triggered when user chooses all symbols and hits the Guess button. */
     fun makeGuess() {
 
         val guess: MutableList<Int> = mutableListOf()
@@ -186,7 +186,7 @@ fun checkGuess(guessList: List<Int>, solutionList: List<Int>): List<Int> {
 
 /** Algorithm that determines if the current position
  *  shall be blank or display a hit / wrong place hit */
-fun diplayHit(hitsList: List<Int>, tag: Int): Int {
+fun displayHit(hitsList: List<Int>, tag: Int): Int {
     return when {
         (hitsList[0] - 1 >= tag) -> Constants.HIT_SYMBOL
         (hitsList[1] - 1 + hitsList[0] >= tag) -> Constants.WRONG_POS_SYMBOL

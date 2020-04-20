@@ -11,7 +11,7 @@ import com.sloman.rs.skocko.util.Constants.NO_DISPLAY
 import com.sloman.rs.skocko.model.GameWithGuesses
 import com.sloman.rs.skocko.model.Symbol
 import com.sloman.rs.skocko.util.Constants
-import com.sloman.rs.skocko.viewmodel.diplayHit
+import com.sloman.rs.skocko.viewmodel.displayHit
 
 /**BindingAdapter for the game rounds RecyclerView ListAdapter having guesses and hits*/
 @BindingAdapter("listData")
@@ -32,7 +32,7 @@ fun bindSymbolList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
 /**BindingAdapter for the dynamic [RecyclerView] ListAdapter displaying user's current symbols choice*/
 @BindingAdapter("guessData")
-fun bindGuesslList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
+fun bindGuessList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
     val adapter = recyclerView.adapter as GuessAdapter
     adapter.submitList(symbolList)
@@ -64,14 +64,14 @@ fun bindImageUrl(imgView: ImageView, imgUri: Int) {
     }
 }
 
-/**BindingAdapter to display [ImageView] (hits or wrong place hits) using [diplayHit] algorithm */
+/**BindingAdapter to display [ImageView] (hits or wrong place hits) using the displayHit algorithm */
 @BindingAdapter("bindImageHit")
 fun bindImageHit(imgView: ImageView, hitsList: List<Int>) {
 
     val tag =
         imgView.let { it.resources.getResourceName(it.id).split(":id/")[1].takeLast(1).toInt() }
 
-    val hitSymbol = diplayHit(hitsList, tag)
+    val hitSymbol = displayHit(hitsList, tag)
 
 
     if (hitSymbol != NO_DISPLAY) {

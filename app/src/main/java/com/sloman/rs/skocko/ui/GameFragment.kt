@@ -12,7 +12,7 @@ import com.sloman.rs.skocko.viewmodel.GameViewModel
 import com.sloman.rs.skocko.databinding.FragmentGameBinding
 import com.sloman.rs.skocko.util.obtainViewModel
 
-/** Fragment with minimal responsibilities: bind the [ViewModel] and setup adapters / listeners*/
+/** Fragment with minimal responsibilities: bind the [GameViewModel] and setup adapters / listeners*/
 class GameFragment : Fragment() {
 
 private lateinit var viewModel: GameViewModel

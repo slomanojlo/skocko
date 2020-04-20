@@ -14,7 +14,7 @@ class GuessAdapter(private val onClickListener: OnClickListenerGuess) :
         DiffCallback
     ) {
 
-    /** Allows the RecyclerView to determine which items have changed when the [List] of [Guess]
+    /** Allows the RecyclerView to determine which items have changed when the [List] of [Symbol]
      * has been updated.*/
     class GuessViewHolder(private var binding: GuessItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -42,7 +42,7 @@ class GuessAdapter(private val onClickListener: OnClickListenerGuess) :
         holder.bind(symbol)
     }
 
-    /** Allows the RecyclerView to determine which items have changed when the [List] of [Guess]
+    /** Allows the RecyclerView to determine which items have changed when the [List] of [Symbol]
      * has been updated. Not really necessary in our case, but imprescindible for scaling up*/
     companion object DiffCallback : DiffUtil.ItemCallback<Symbol>() {
 
@@ -56,9 +56,9 @@ class GuessAdapter(private val onClickListener: OnClickListenerGuess) :
     }
 
 
-    /**Custom listener that handles clicks on [RecyclerView] items.  Passes the [Guess]
+    /**Custom listener that handles clicks on [RecyclerView] items.  Passes the [Symbol]
      * associated with the current item to the [onClick] function.
-     * @param clickListener lambda that will be called with the current [Guess]*/
+     * @param clickListener lambda that will be called with the current [Symbol]*/
     class OnClickListenerGuess(val clickListener: (symbol: Symbol) -> Unit) {
         fun onClick(symbol: Symbol) = clickListener(symbol)
     }

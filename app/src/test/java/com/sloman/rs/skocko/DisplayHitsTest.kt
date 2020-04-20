@@ -1,6 +1,6 @@
 package com.sloman.rs.skocko
 
-import com.sloman.rs.skocko.viewmodel.diplayHit
+import com.sloman.rs.skocko.viewmodel.displayHit
 import com.sloman.rs.skocko.util.Constants
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -19,9 +19,9 @@ class DisplayHitsTest(
 
     companion object {
 
-        val noDisplay = 0
-        val hit = Constants.HIT_SYMBOL
-        val wrongPlace = Constants.WRONG_POS_SYMBOL
+        private const val noDisplay = 0
+        private const val hit = Constants.HIT_SYMBOL
+        private const val wrongPlace = Constants.WRONG_POS_SYMBOL
 
         @JvmStatic
         @Parameterized.Parameters(name = "displayHits:{3}")
@@ -41,7 +41,7 @@ class DisplayHitsTest(
     @Test
     fun test_displayHit() {
 
-        val actual = diplayHit(
+        val actual = displayHit(
             hitsList,
             imagePosTag
         )

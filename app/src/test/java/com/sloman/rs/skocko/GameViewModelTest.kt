@@ -19,7 +19,7 @@ import org.junit.rules.ExpectedException
 class GameViewModelTest {
 
     @get:Rule
-    val exceptionRule = ExpectedException.none()
+    val exceptionRule = ExpectedException.none()!!
 
     @Test
     fun test_getCurrentGame() {
@@ -51,6 +51,5 @@ class GameViewModelTest {
             .setGameState(0, state)
 
     }
-
 
 }

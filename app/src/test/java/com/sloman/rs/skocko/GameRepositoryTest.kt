@@ -32,7 +32,7 @@ open class GameRepositoryTest {
     val testRule = InstantTaskExecutorRule()
 
     @get:Rule
-    val exceptionRule = ExpectedException.none()
+    val exceptionRule: ExpectedException = ExpectedException.none()
 
     private lateinit var db: GameDatabase
 
