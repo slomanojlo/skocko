@@ -54,23 +54,23 @@
             <Button
                 android:id="@+id/btnGuess"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_height="0dp"
                 android:backgroundTint="@color/colorAccent"
                 android:text="@string/guess"
+                android:textSize="12sp"
                 android:textColor="@color/primaryTextColor"
                 app:bindCheckGuess="@{viewModel.guessList}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/rwGuessTry"
                 app:layout_constraintTop_toBottomOf="@+id/btnPlayAgain" />
 
             <Button
                 android:id="@+id/btnPlayAgain"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:backgroundTint="@color/colorAccent"
                 android:text="@string/play_again"
+                android:textSize="10sp"
                 android:textColor="@color/primaryTextColor"
                 app:layout_constraintBottom_toTopOf="@+id/btnGuess"
                 app:layout_constraintEnd_toEndOf="parent"
