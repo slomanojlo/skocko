@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import com.sloman.rs.skocko.adapter.GameAdapter
 import com.sloman.rs.skocko.adapter.GuessAdapter
 import com.sloman.rs.skocko.adapter.SymbolAdapter
-import com.sloman.rs.skocko.viewmodel.GameViewModel
 import com.sloman.rs.skocko.databinding.FragmentGameBinding
 import com.sloman.rs.skocko.util.obtainViewModel
+import com.sloman.rs.skocko.viewmodel.GameViewModel
 
 /** Fragment with minimal responsibilities: bind the [GameViewModel] and setup adapters / listeners*/
 class GameFragment : Fragment() {

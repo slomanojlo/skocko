@@ -10,4 +10,3 @@ data class Game constructor(
     val solution : List<Int>,
     val state : String
 )
-

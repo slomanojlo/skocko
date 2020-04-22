@@ -3,4 +3,5 @@
     <string name="game_state">Game %1$s!</string>
     <string name="guess">Guess!</string>
     <string name="play_again">Play Again</string>
+    <string name="symbol_image">symbol image</string>
 </resources>

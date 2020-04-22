@@ -54,24 +54,23 @@
             <Button
                 android:id="@+id/btnGuess"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorAccent"
                 android:text="@string/guess"
-                android:textSize="12sp"
                 android:textColor="@color/primaryTextColor"
+                android:textSize="12sp"
                 app:bindCheckGuess="@{viewModel.guessList}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnPlayAgain" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
                 android:id="@+id/btnPlayAgain"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorAccent"
                 android:text="@string/play_again"
-                android:textSize="10sp"
                 android:textColor="@color/primaryTextColor"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/btnGuess"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rwSymbols" />
@@ -80,10 +79,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rwSymbols"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintBottom_toTopOf="@+id/rwGuessTry"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -92,7 +91,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rwGuessTry"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:orientation="horizontal"
                 app:guessData="@{viewModel.guessList}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

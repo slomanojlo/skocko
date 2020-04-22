@@ -65,6 +65,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/rwSymbols" />
 
+
             <Button
                 android:id="@+id/btnPlayAgain"
                 android:layout_width="wrap_content"
@@ -75,25 +76,23 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/btnGuess"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/rwGuessTry" />
-
+                app:layout_constraintHorizontal_bias="0.536"
+                app:layout_constraintStart_toEndOf="@+id/rwSymbols" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rwSymbols"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/rwGuessTry"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:symbolData="@{viewModel.symbolList}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rwGuessTry"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 app:guessData="@{viewModel.guessList}"

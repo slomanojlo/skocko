@@ -35,6 +35,7 @@ buildscript {
         roomVersion = '2.2.5'
         version_robolectric = '4.3.1'
         version_recyclerview = '1.1.0'
+        version_cardview = '1.0.0'
 
     }
 
