@@ -1,10 +1,9 @@
 package com.sloman.rs.skocko.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
+import com.sloman.rs.skocko.R
 import com.sloman.rs.skocko.adapter.GameAdapter
 import com.sloman.rs.skocko.adapter.GuessAdapter
 import com.sloman.rs.skocko.adapter.SymbolAdapter
@@ -30,8 +29,6 @@ private lateinit var viewModel: GameViewModel
         /** Allows Data Binding to Observe LiveData with the lifecycle of this Fragment */
         binding.lifecycleOwner = this
 
-
-
         /** Giving the binding access to the OverviewViewModel */
         binding.viewModel = viewModel
 
@@ -46,10 +43,28 @@ private lateinit var viewModel: GameViewModel
             GuessAdapter(GuessAdapter.OnClickListenerGuess { viewModel.clearGuess() })
 
         binding.btnGuess.setOnClickListener { viewModel.makeGuess()}
-        binding.btnPlayAgain.setOnClickListener { viewModel.playAgain()}
-        binding.btnPlayAgainGameOver.setOnClickListener { viewModel.playAgain()}
 
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_game, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+            R.id.action_replay -> {
+                viewModel.playAgain()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }

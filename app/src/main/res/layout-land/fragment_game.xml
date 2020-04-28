@@ -66,19 +66,6 @@
                 app:layout_constraintStart_toEndOf="@+id/rwSymbols" />
 
 
-            <Button
-                android:id="@+id/btnPlayAgain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorAccent"
-                android:text="@string/play_again"
-                android:textColor="@color/primaryTextColor"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/btnGuess"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.536"
-                app:layout_constraintStart_toEndOf="@+id/rwSymbols" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rwSymbols"
                 android:layout_width="wrap_content"
@@ -97,7 +84,7 @@
                 android:orientation="vertical"
                 app:guessData="@{viewModel.guessList}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+                app:layout_constraintBottom_toTopOf="@+id/btnGuess"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/rwSymbols"
