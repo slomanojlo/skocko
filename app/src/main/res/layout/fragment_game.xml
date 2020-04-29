@@ -43,6 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:tag="in_progress"
+            android:visibility="gone"
             app:checkStatus="@{viewModel.game.game.state}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:tag="game_over"
-            android:visibility="gone"
+            android:visibility="visible"
             app:checkStatus="@{viewModel.game.game.state}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -106,6 +107,19 @@
             app:layout_constraintTop_toTopOf="@+id/guideline75"
             app:layout_constraintVertical_bias="0.0">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rwSolution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnPlayAgainGameOver"
+                app:solutionData="@{viewModel.game.game.solution}" />
+
             <Button
                 android:id="@+id/btnPlayAgainGameOver"
                 android:layout_width="wrap_content"
@@ -113,7 +127,6 @@
                 android:backgroundTint="@color/colorAccent"
                 android:text="@string/play_again"
                 android:textColor="@color/primaryTextColor"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/twState"
@@ -123,13 +136,13 @@
                 android:id="@+id/twState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{@string/game_state(viewModel.game.game.state)}"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/btnPlayAgainGameOver"
                 app:layout_constraintEnd_toStartOf="@+id/btnPlayAgainGameOver"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@{@string/game_state(viewModel.game.game.state)}" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

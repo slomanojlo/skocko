@@ -30,6 +30,24 @@ fun bindSymbolList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {
 
 }
 
+/**BindingAdapter for the static [RecyclerView] ListAdapter displaying the solution of the game*/
+@BindingAdapter("solutionData")
+fun bindSolutionData(recyclerView: RecyclerView, symbolListInt: List<Int>?) {
+
+    if (!symbolListInt.isNullOrEmpty()) {
+
+        val symbolList = listOf(
+            Symbol(symbolListInt[0], Constants.SYMBOLS[(symbolListInt[0])]),
+            Symbol(symbolListInt[1], Constants.SYMBOLS[(symbolListInt[1])]),
+            Symbol(symbolListInt[2], Constants.SYMBOLS[(symbolListInt[2])]),
+            Symbol(symbolListInt[3], Constants.SYMBOLS[(symbolListInt[3])])
+        )
+
+        val adapter = recyclerView.adapter as GuessAdapter
+        adapter.submitList(symbolList)
+    }
+}
+
 /**BindingAdapter for the dynamic [RecyclerView] ListAdapter displaying user's current symbols choice*/
 @BindingAdapter("guessData")
 fun bindGuessList(recyclerView: RecyclerView, symbolList: List<Symbol>?) {

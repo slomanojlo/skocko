@@ -39,10 +39,13 @@ private lateinit var viewModel: GameViewModel
             SymbolAdapter(SymbolAdapter.OnClickListenerSymbol {
                 viewModel.addSymbol(it.id)
             })
+        binding.rwSolution.adapter =
+            GuessAdapter(GuessAdapter.OnClickListenerGuess {})
         binding.rwGuessTry.adapter =
             GuessAdapter(GuessAdapter.OnClickListenerGuess { viewModel.clearGuess() })
 
         binding.btnGuess.setOnClickListener { viewModel.makeGuess()}
+        binding.btnPlayAgainGameOver.setOnClickListener{viewModel.playAgain()}
 
         return binding.root
     }
